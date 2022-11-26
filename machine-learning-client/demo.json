@@ -1,0 +1,30 @@
+{
+    "objects": [
+        "object1",
+        "object2",
+        "object3",
+        "object4",
+        "object5",
+        "object6",
+        "object7",
+        "object8",
+        "object9"
+    ],
+    "users": {
+        "user0": {
+            "name": "username",
+            "total": 0,
+            "objects": {
+                "object1": 0,
+                "object2": 0,
+                "object3": 0,
+                "object4": 0,
+                "object5": 0,
+                "object6": 0,
+                "object7": 0,
+                "object8": 0,
+                "object9": 0
+            }
+        }
+    }
+}
