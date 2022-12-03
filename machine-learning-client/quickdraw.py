@@ -13,7 +13,7 @@ def initialize():
 	return model, classes
 
 def getObject(classes):
-	return choice(classes)
+    return choice(classes)
 	
 def predict(model, classes, image, category):
 	image = base64.b64decode(image)
