@@ -1,15 +1,17 @@
-name: ML Test
-on: [push]
+name: ML Tests
+
+on: [push, pull_request]
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     defaults:
       run:
         working-directory: ./machine-learning-client
+    timeout-minutes: 5
     strategy:
       matrix:
-        python-version: ["3.7", "3.9", "3.11"]
+        python-version: ["3.8", "3.10"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -20,11 +22,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest
-          pip install flask
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Turn on 'editable' mode
-        run: |
-          pip install -e .
       - name: Test with pytest
         run: |
-          python -m pytest 
+          pytest
