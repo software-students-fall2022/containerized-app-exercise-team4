@@ -19,7 +19,7 @@ def predict(model, classes, image, category):
 	image = base64.b64decode(image)
 	image = Image.open(io.BytesIO(image)).convert('L').resize((28, 28))
 	image = np.array(image).reshape(28,28,1).astype('float32')/255.0
-	print(image)
+	# print(image)
 	for i in range(0, len(image)):
 		for j in range(0, len(image[i])):
 			for k in range(0, len(image[i][j])):
