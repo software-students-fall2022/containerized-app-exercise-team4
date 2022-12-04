@@ -5,12 +5,12 @@ from unittest import mock
 def test_initialize():
     model, classes = initialize()
     assert model != None
-    assert classes == ['eyeglasses', 'door', 'shorts', 'cloud', 'laptop', 'banana', 'star', 'sun', 'rainbow', 'snowflake', 'envelope', 'candle', 'bowtie', 'butterfly', 'ladder', 't-shirt', 'triangle']
+    assert classes == ['baseball_bat', 'eyeglasses', 'grapes', 'anvil', 'laptop', 'dumbbell', 'sun', 'book', 'drums', 'ladder']
 
-@mock.patch('quickdraw.choice', side_effect=['door'])
+@mock.patch('quickdraw.choice', side_effect=['grapes'])
 def test_getObject(mock_choice):
-   obj = getObject(['eyeglasses', 'door', 'shorts', 'cloud', 'laptop', 'banana', 'star', 'sun', 'rainbow', 'snowflake', 'envelope', 'candle', 'bowtie', 'butterfly', 'ladder', 't-shirt', 'triangle'])
-   assert obj == 'door'
+   obj = getObject(['baseball_bat', 'eyeglasses', 'grapes', 'anvil', 'laptop', 'dumbbell', 'sun', 'book', 'drums', 'ladder'])
+   assert obj == 'grapes'
 
 def test_predict():
     model, classes = initialize()

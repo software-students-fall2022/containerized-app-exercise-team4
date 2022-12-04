@@ -7,7 +7,7 @@ import io
 import pymongo
 
 def initialize():
-	model = load_model('keras17objects.h5')
+	model = load_model('keras10objects.h5')
 	f = open("categories.txt","r")
 	classes = f.read().split('\n')[:-1]
 	f.close()
