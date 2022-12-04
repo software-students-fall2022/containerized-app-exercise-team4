@@ -14,10 +14,6 @@
 <body>
     <div class="homeContainer">
         <h1 class="display-1"> Drawing Recognition Game</h1>
-        <div style="display: flex; flex-direction:row">
-            <h3>score:</h3>
-            <h3 id="score">0</h3>
-        </div>
         <img class="logo" src="{{ url_for('static', filename='images/quickdraw.png') }}" width="500" height="400"/>
         <div class="homeButtonContainer">
             <button type="button" class="btn btn-primary homeButton"><a class="homeLink" href="{{ url_for('login')}}">Sign In</a></button>
