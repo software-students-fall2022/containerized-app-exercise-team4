@@ -19,7 +19,7 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
     app.debug = True # debug mnode
 
 # connect to the database
-cluster = pymongo.MongoClient("mongodb+srv://project4:FATemma#1@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+cluster = pymongo.MongoClient("mongodb+srv://project4:<password>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 db = cluster["project4"]
 
