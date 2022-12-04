@@ -32,7 +32,18 @@ def predict(model, classes, image, category):
 	ind = (-prediction).argsort()[:5]
 	result = [ classes[x] for x in ind]
 	print(result)
-	score = result.index(category)+1*5
+	score = result.index(category)+1
+	if (result.index(category)+1==1):
+		score = 20
+	elif (result.index(category)+1==4):
+		score = 15
+	elif (result.index(category)+1==3):
+		score = 10
+	elif (result.index(category)+1==2):
+		score = 5
+	else:
+		score = 0
+
 	try:
 		return score, result.index(category)+1
 	except ValueError:
