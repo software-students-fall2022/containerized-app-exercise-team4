@@ -23,7 +23,6 @@ cluster = pymongo.MongoClient(
     "mongodb+srv://project4:FATemma#1@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 db = cluster["project4"]
-
 # try:
 #     # verify the connection works by pinging the database
 #     cxn.admin.command('ping') # The ping command is cheap and does not require auth.
@@ -54,27 +53,22 @@ def puzzle():
 @app.route('/check', methods=['POST'])
 def check():
     data = request.get_json()
-    score, res, category = predict(
+    objscore, res, category, score2 = predict(
         model, classes, data['image'], data['category'])
     x = db.users.find_one({'username': user_name})
     print(category)
     try:
-        db.users.update_one(
-            {'username': user_name},
-            {'$set': {category: score}}
+        if (x[category] < objscore):
+            db.users.update_one(
+                {'username': user_name},
+                {'$set': {category: objscore}}
+            )
+        print(score2, objscore)
+        if (x['score'] < score2):
+            db.users.update_one(
+                {'username': user_name},
+                {'$set': {'score': score2}}
         )
-        # calcscore
-        global score2
-        score2 = 0
-        objects = {'baseball_bat','eyeglasses','grapes','anvil','laptop','dumbbell','sun','book','drums','ladder'}
-        for obj in objects:
-            score2 += x[obj]
-            
-        # db.users.update_one(
-        #     {'username': user_name},
-        #     {'$set': {'score': score}}
-        # )
-
     except Exception as e:
         print("error:", e)
 
@@ -82,7 +76,7 @@ def check():
     return jsonify(
         {
             'result': res,
-            'score': score
+            'score': score2
         }
     )
 
@@ -140,8 +134,6 @@ def login():
                     {'username': user_name},
                     {'$set': {'numLogins': x['numLogins'] + 1}}
                 )
-
-                print(x)
                 return redirect(url_for('game'))
             else:
                 return render_template("login.html", message="Wrong Password")
@@ -150,7 +142,7 @@ def login():
     else:
         return render_template("login.html", message="")
 
+
 @app.route("/logout")
 def logout():
     return redirect(url_for('login'))
-
