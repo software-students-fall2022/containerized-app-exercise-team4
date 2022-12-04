@@ -1,13 +1,13 @@
 * {
-    background-color: cyan;
+    background-color: #FFFFA7;
 }
 
 ul{
     list-style-type:none;
 }
 .menu{
-    display:flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
@@ -21,3 +21,5 @@ table, th, td{
     padding: 18px;
     border: 1px solid black;
 }
+
+
