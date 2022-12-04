@@ -59,10 +59,6 @@ def check():
     x = db.users.find_one({'username': user_name})
     print(category)
     try:
-        # db.users.update_one(
-        #     {'username': user_name},
-        #     {'$set': {'numLogins': x['numLogins'] + 1}}
-        # )
         db.users.update_one(
             {'username': user_name},
             {'$set': {category: score}}
@@ -74,7 +70,8 @@ def check():
 
     except Exception as e:
         print("error:", e)
-    print(db.users.find_one({'username': user_name}))
+
+    # print(db.users.find_one({'username': user_name}))
     return jsonify(
         {
             'result': res,
