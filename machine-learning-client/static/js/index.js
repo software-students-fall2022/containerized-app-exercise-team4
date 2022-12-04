@@ -66,6 +66,7 @@ function submit(mode) {
 				][response['result']]
 				document.getElementById('result').innerHTML = result
 				newscore = (int)(document.getElementById('score').innerHTML) + (int)(response['score'])
+				document.getElementById('score').innerHTML = newscore
 				resolve()
 			})
 		}
