@@ -19,7 +19,7 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
     app.debug = True # debug mnode
 
 # connect to the database
-cluster = pymongo.MongoClient("mongodb+srv://project4:<password>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+cluster = pymongo.MongoClient("mongodb+srv://project4:<passhere>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 db = cluster["project4"]
 
@@ -50,7 +50,13 @@ def puzzle():
 @app.route('/check', methods=['POST'])
 def check():
     data = request.get_json()
-    return jsonify({ 'result': predict(model, classes, data['image'], data['category']) })
+    score, res = predict(model, classes, data['image'], data['category'])
+    return jsonify(
+        {
+             'result': res,
+             'score':score
+        }
+    )
 
 @app.route("/register", methods=["POST", "GET"])
 def register():

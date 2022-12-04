@@ -65,6 +65,7 @@ function submit(mode) {
 					'<span class="text-warning">Average</span>'
 				][response['result']]
 				document.getElementById('result').innerHTML = result
+				document.getElementById('score').innerHTML = response['score']
 				resolve()
 			})
 		}

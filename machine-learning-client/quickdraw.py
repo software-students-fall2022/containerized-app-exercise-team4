@@ -27,11 +27,14 @@ def predict(model, classes, image, category):
 					image[i][j][k] += 2
 	prediction = model.predict(np.expand_dims(image, axis=0))[0]
 	print(max(prediction))
+	if max(prediction) < 0.5:
+		return 0
 	ind = (-prediction).argsort()[:5]
 	result = [ classes[x] for x in ind]
 	print(result)
+	score = result.index(category)+1*5
 	try:
-		return result.index(category)+1
+		return score, result.index(category)+1
 	except ValueError:
 		return 0
 
