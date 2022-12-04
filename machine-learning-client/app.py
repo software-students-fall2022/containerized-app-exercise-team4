@@ -19,17 +19,20 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
     app.debug = True # debug mnode
 
 # connect to the database
-cxn = pymongo.MongoClient(config['MONGO_URI'], serverSelectionTimeoutMS=5000)
-try:
-    # verify the connection works by pinging the database
-    cxn.admin.command('ping') # The ping command is cheap and does not require auth.
-    db = cxn[config['MONGO_DBNAME']] # store a reference to the database
-    print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
-except Exception as e:
-    # the ping command failed, so the connection is not available.
-    # render_template('error.html', error=e) # render the edit template
-    print(' *', "Failed to connect to MongoDB at", config['MONGO_URI'])
-    print('Database connection error:', e) # debug
+cluster = pymongo.MongoClient("mongodb+srv://project4:FATemma#1@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+
+db = cluster["project4"]
+
+# try:
+#     # verify the connection works by pinging the database
+#     cxn.admin.command('ping') # The ping command is cheap and does not require auth.
+#     db = cxn[config['MONGO_DBNAME']] # store a reference to the database
+#     print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+# except Exception as e:
+#     # the ping command failed, so the connection is not available.
+#     # render_template('error.html', error=e) # render the edit template
+#     print(' *', "Failed to connect to MongoDB at", config['MONGO_URI'])
+#     print('Database connection error:', e) # debug
 
 
 @app.route('/')
@@ -64,7 +67,19 @@ def register():
         if db.users.count_documents({'username': user_name}) == 0:
             new_user = {
                 'username': user_name,
-                'password': user_password
+                'password': user_password,
+                'baseball_bat':0,
+                'eyeglasses':0,
+                'grapes':0,
+                'anvil':0,
+                'laptop':0,
+                'dumbbell':0,
+                'sun':0,
+                'book':0,
+                'drums':0,
+                'ladder':0,
+                'score':0,
+                'numLogins':0
             }
             db.users.insert_one(new_user)
             print('Inserted', file=sys.stderr) 
@@ -83,6 +98,7 @@ def login():
         x = db.users.find_one({'username': user_name})
         if x is not None:
             if x['password'] == user_password:
+                x.update({'numLogins': x['numLogins'] + 1})
                 return redirect(url_for('game'))
             else:
                 return render_template("login.html", message="Wrong Password")
