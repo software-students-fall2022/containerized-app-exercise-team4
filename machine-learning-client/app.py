@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 from tensorflow.keras.models import load_model
-from bson.objectid import ObjectId
 from dotenv import dotenv_values
 from quickdraw import *
 import datetime
@@ -47,7 +46,11 @@ def puzzle():
 @app.route('/check', methods=['POST'])
 def check():
     data = request.get_json()
-    return jsonify({ 'result': predict(model, classes, data['image'], data['category']) })
+    uri = "data:image/png;base64,%s" % data['image']
+    db.images.insert_one({
+        'uri': uri
+    })
+    return jsonify({ 'result': predict(model, classes, data['image'], data['category']), 'image': uri})
 
 @app.route("/register", methods=["POST", "GET"])
 def register():

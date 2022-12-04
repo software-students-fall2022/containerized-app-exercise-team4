@@ -4,9 +4,10 @@ from random import choice
 from PIL import Image
 import base64
 import io
+import pymongo
 
 def initialize():
-	model = load_model('keras10objects.h5')
+	model = load_model('keras17objects.h5')
 	f = open("categories.txt","r")
 	classes = f.read().split('\n')[:-1]
 	f.close()
@@ -19,15 +20,10 @@ def predict(model, classes, image, category):
 	image = base64.b64decode(image)
 	image = Image.open(io.BytesIO(image)).convert('L').resize((28, 28))
 	image = np.array(image).reshape(28,28,1).astype('float32')/255.0
-	print(image)
-	for i in range(0, len(image)):
-		for j in range(0, len(image[i])):
-			for k in range(0, len(image[i][j])):
-				if(image[i][j][k] > 0):
-					image[i][j][k] += 2
 	prediction = model.predict(np.expand_dims(image, axis=0))[0]
-	print(max(prediction))
 	ind = (-prediction).argsort()[:5]
+	predictions = [prediction[x] for x in ind]
+	print(predictions)
 	result = [ classes[x] for x in ind]
 	print(result)
 	try:
