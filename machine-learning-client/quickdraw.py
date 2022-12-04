@@ -34,13 +34,15 @@ def predict(model, classes, image, category):
 	print(result)
 	print(result.index(category)+1)
 	if (result.index(category)+1==1):
-		score = 20
+		score = 50
 	elif (result.index(category)+1==2):
-		score = 15
+		score = 40
 	elif (result.index(category)+1==3):
-		score = 10
+		score = 30
 	elif (result.index(category)+1==4):
-		score = 5
+		score = 20
+	elif (result.index(category)+1==5):
+		score = 10
 	else:
 		score = 0
 	

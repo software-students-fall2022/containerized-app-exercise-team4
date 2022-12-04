@@ -20,7 +20,7 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
 
 # connect to the database
 cluster = pymongo.MongoClient(
-    "mongodb+srv://project4:<password>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+    "mongodb+srv://project4:FATemma#1@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 db = cluster["project4"]
 
@@ -63,15 +63,22 @@ def check():
             {'username': user_name},
             {'$set': {category: score}}
         )
-        db.users.update_one(
-            {'username': user_name},
-            {'$set': {'score': x['score'] + score}}
-        )
+        # calcscore
+        global score2
+        score2 = 0
+        objects = {'baseball_bat','eyeglasses','grapes','anvil','laptop','dumbbell','sun','book','drums','ladder'}
+        for obj in objects:
+            score2 += x[obj]
+            
+        # db.users.update_one(
+        #     {'username': user_name},
+        #     {'$set': {'score': score}}
+        # )
 
     except Exception as e:
         print("error:", e)
 
-    # print(db.users.find_one({'username': user_name}))
+    print(db.users.find_one({'username': user_name}))
     return jsonify(
         {
             'result': res,
