@@ -72,6 +72,12 @@ Database - Stores each user's username and password, as well as their scores on 
 
 To be written
 
+
+## Run Tests
+
+To run machine-learning-client tests, change directory to machine-learning-client `cd machine-learning-client` and run `python -m pytest`.
+To run web-app tests, change directory to web-app `cd web-app` and run `python -m pytest`.
+
 ## Team Members
 
 [Kevin Gong](https://github.com/kxg202)
