@@ -20,7 +20,7 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
 
 # connect to the database
 cluster = pymongo.MongoClient(
-    "mongodb+srv://project4:<passhere>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+    "mongodb+srv://project4:FATemma#1@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 db = cluster["project4"]
 
@@ -54,7 +54,27 @@ def puzzle():
 @app.route('/check', methods=['POST'])
 def check():
     data = request.get_json()
-    score, res = predict(model, classes, data['image'], data['category'])
+    score, res, category = predict(
+        model, classes, data['image'], data['category'])
+    x = db.users.find_one({'username': user_name})
+    print(category)
+    try:
+        # db.users.update_one(
+        #     {'username': user_name},
+        #     {'$set': {'numLogins': x['numLogins'] + 1}}
+        # )
+        db.users.update_one(
+            {'username': user_name},
+            {'$set': {category: score}}
+        )
+        db.users.update_one(
+            {'username': user_name},
+            {'$set': {'score': x['score'] + score}}
+        )
+
+    except Exception as e:
+        print("error:", e)
+    print(db.users.find_one({'username': user_name}))
     return jsonify(
         {
             'result': res,
@@ -66,6 +86,7 @@ def check():
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
+        global user_name
         user_name = request.form["username"]
         user_password = request.form["password"]
 
@@ -104,13 +125,19 @@ def register():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
+        global user_name
         user_name = request.form["username"]
         user_password = request.form["password"]
 
         x = db.users.find_one({'username': user_name})
         if x is not None:
             if x['password'] == user_password:
-                x.update({'numLogins': x['numLogins'] + 1})
+                db.users.update_one(
+                    {'username': user_name},
+                    {'$set': {'numLogins': x['numLogins'] + 1}}
+                )
+
+                print(x)
                 return redirect(url_for('game'))
             else:
                 return render_template("login.html", message="Wrong Password")
