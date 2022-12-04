@@ -1,0 +1,60 @@
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.homeContainer {
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homeButtonContainer {
+    margin-right: 50px;
+    margin-top: 60px;
+    height: 60px;
+    width: 30%;
+    display:flex;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.homeLink, .homeLink:hover {
+    font-size: 30px;
+}
+
+.homeButton {
+    height: 100%;
+    width: 45%;
+}
+
+.logo {
+    margin-right: 40px;
+}
+
+h1{
+    margin-bottom: 60px;
+}
+
+.secondButton {
+    margin-top: 5px;
+}
+
+.usernameGroup {
+    margin-bottom: 15px;
+}
+
+.passwordGroup {
+    margin-bottom: 10px;
+}
+
+.loginRegisterButtons {
+    width: 100px;
+}
