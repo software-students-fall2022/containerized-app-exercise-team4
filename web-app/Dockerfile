@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.9.2 
 
 # Set the working directory in the image
 WORKDIR /web-cdapp
