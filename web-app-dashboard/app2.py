@@ -263,4 +263,130 @@ def laptop():
     plt.savefig('./static/images/laptop.png')
     plt.clf()
     return render_template('display.html',url='./static/images/laptop.png')
-    
+
+@app.route('/dumbbell')
+def dumbbell():
+    docs = db.userData.find({}, {"dumbbell": 1})
+    scoresForDumbbell=[]
+    for doc in docs:
+        scoresForDumbbell.append(doc["dumbbell"])
+    failed,average,good,veryGood,excellent,perfect=countsScores(scoresForDumbbell)
+    y=[]
+    y.append(failed)
+    y.append(average)
+    y.append(good)
+    y.append(veryGood)
+    y.append(excellent)
+    y.append(perfect)
+    x=["Failed","Average","Good","Very Good","Excellent","Perfect"]
+    plt.barh(x,y, color={'red','green','blue','orange','grey','brown'})
+    plt.tight_layout(pad=3)
+    plt.xlabel('Counts')
+    plt.ylabel('Labels')
+    plt.title('Dumbbell Statistics')
+    plt.savefig('./static/images/dumbbell.png')
+    plt.clf()
+    return render_template('display.html',url='./static/images/dumbbell.png')
+
+@app.route('/sun')
+def sun():
+    docs = db.userData.find({}, {"sun": 1})
+    scoresForSun=[]
+    for doc in docs:
+        scoresForSun.append(doc["sun"])
+    failed,average,good,veryGood,excellent,perfect=countsScores(scoresForSun)
+    y=[]
+    y.append(failed)
+    y.append(average)
+    y.append(good)
+    y.append(veryGood)
+    y.append(excellent)
+    y.append(perfect)
+    x=["Failed","Average","Good","Very Good","Excellent","Perfect"]
+    plt.barh(x,y, color={'red','green','blue','orange','grey','brown'})
+    plt.tight_layout(pad=3)
+    plt.xlabel('Counts')
+    plt.ylabel('Labels')
+    plt.title('Sun Statistics')
+    plt.savefig('./static/images/sun.png')
+    plt.clf()
+    return render_template('display.html',url='./static/images/sun.png')
+
+@app.route('/book')
+def book():
+    docs = db.userData.find({}, {"book": 1})
+    scoresForBook=[]
+    for doc in docs:
+        scoresForBook.append(doc["book"])
+    failed,average,good,veryGood,excellent,perfect=countsScores(scoresForBook)
+    y=[]
+    y.append(failed)
+    y.append(average)
+    y.append(good)
+    y.append(veryGood)
+    y.append(excellent)
+    y.append(perfect)
+    x=["Failed","Average","Good","Very Good","Excellent","Perfect"]
+    plt.barh(x,y, color={'red','green','blue','orange','grey','brown'})
+    plt.tight_layout(pad=3)
+    plt.xlabel('Counts')
+    plt.ylabel('Labels')
+    plt.title('Book Statistics')
+    plt.savefig('./static/images/book.png')
+    plt.clf()
+    return render_template('display.html',url='./static/images/book.png')
+
+@app.route('/drums')
+def drums():
+    docs = db.userData.find({}, {"drums": 1})
+    scoresForDrums=[]
+    for doc in docs:
+        scoresForDrums.append(doc["drums"])
+    failed,average,good,veryGood,excellent,perfect=countsScores(scoresForDrums)
+    y=[]
+    y.append(failed)
+    y.append(average)
+    y.append(good)
+    y.append(veryGood)
+    y.append(excellent)
+    y.append(perfect)
+    x=["Failed","Average","Good","Very Good","Excellent","Perfect"]
+    plt.barh(x,y, color={'red','green','blue','orange','grey','brown'})
+    plt.tight_layout(pad=3)
+    plt.xlabel('Counts')
+    plt.ylabel('Labels')
+    plt.title('Drums Statistics')
+    plt.savefig('./static/images/drums.png')
+    plt.clf()
+    return render_template('display.html',url='./static/images/drums.png')
+
+@app.route('/ladder')
+def ladder():
+    docs = db.userData.find({}, {"ladder": 1})
+    scoresForLadder=[]
+    for doc in docs:
+        scoresForLadder.append(doc["ladder"])
+    failed,average,good,veryGood,excellent,perfect=countsScores(scoresForLadder)
+    y=[]
+    y.append(failed)
+    y.append(average)
+    y.append(good)
+    y.append(veryGood)
+    y.append(excellent)
+    y.append(perfect)
+    x=["Failed","Average","Good","Very Good","Excellent","Perfect"]
+    plt.barh(x,y, color={'red','green','blue','orange','grey','brown'})
+    plt.tight_layout(pad=3)
+    plt.xlabel('Counts')
+    plt.ylabel('Labels')
+    plt.title('Ladder Statistics')
+    plt.savefig('./static/images/ladder.png')
+    plt.clf()
+    return render_template('display.html',url='./static/images/ladder.png')
+
+if __name__ == "__main__":
+    PORT = os.getenv('PORT', 5000) # use the PORT environment variable, or default to 5000
+
+    #import logging
+    #logging.basicConfig(filename='/home/ak8257/error.log',level=logging.DEBUG)
+    app.run(port=PORT)
