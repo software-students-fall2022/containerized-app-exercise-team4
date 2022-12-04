@@ -16,10 +16,11 @@ config = dotenv_values(".env")
 # turn on debugging if in development mode
 if os.getenv('FLASK_ENV', 'development') == 'development':
     # turn on debugging, if in development
-    app.debug = True # debug mnode
+    app.debug = True  # debug mnode
 
 # connect to the database
-cluster = pymongo.MongoClient("mongodb+srv://project4:<passhere>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+cluster = pymongo.MongoClient(
+    "mongodb+srv://project4:<passhere>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 db = cluster["project4"]
 
@@ -37,15 +38,18 @@ db = cluster["project4"]
 
 @app.route('/')
 def index():
-	return render_template('home.html')
+    return render_template('home.html')
+
 
 @app.route('/draw')
 def game():
     return render_template('index.html')
 
+
 @app.route('/puzzle')
 def puzzle():
     return getObject(classes)
+
 
 @app.route('/check', methods=['POST'])
 def check():
@@ -53,17 +57,18 @@ def check():
     score, res = predict(model, classes, data['image'], data['category'])
     return jsonify(
         {
-             'result': res,
-             'score':score
+            'result': res,
+            'score': score
         }
     )
+
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
         user_name = request.form["username"]
         user_password = request.form["password"]
-        
+
         # Checking Validation
         if len(user_name) == 0:
             return render_template("register.html", message="Please enter valid username")
@@ -74,33 +79,34 @@ def register():
             new_user = {
                 'username': user_name,
                 'password': user_password,
-                'baseball_bat':0,
-                'eyeglasses':0,
-                'grapes':0,
-                'anvil':0,
-                'laptop':0,
-                'dumbbell':0,
-                'sun':0,
-                'book':0,
-                'drums':0,
-                'ladder':0,
-                'score':0,
-                'numLogins':0
+                'baseball_bat': 0,
+                'eyeglasses': 0,
+                'grapes': 0,
+                'anvil': 0,
+                'laptop': 0,
+                'dumbbell': 0,
+                'sun': 0,
+                'book': 0,
+                'drums': 0,
+                'ladder': 0,
+                'score': 0,
+                'numLogins': 0
             }
             db.users.insert_one(new_user)
-            print('Inserted', file=sys.stderr) 
+            print('Inserted', file=sys.stderr)
             return redirect(url_for('login'))
         else:
             return render_template("register.html", message="User account already exists")
     else:
         return render_template("register.html")
 
+
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
         user_name = request.form["username"]
         user_password = request.form["password"]
- 
+
         x = db.users.find_one({'username': user_name})
         if x is not None:
             if x['password'] == user_password:
@@ -113,5 +119,6 @@ def login():
     else:
         return render_template("login.html", message="")
 
+
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
