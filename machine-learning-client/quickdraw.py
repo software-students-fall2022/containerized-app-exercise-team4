@@ -4,6 +4,7 @@ from random import choice
 from PIL import Image
 import base64
 import pymongo
+import io
 global scoretotal
 scoretotal = 0
 
@@ -17,22 +18,6 @@ def initialize():
 
 def getObject(classes):
 	return choice(classes)
-	
-def predict(model, classes, image, category):
-	image = base64.b64decode(image)
-	image = Image.open(io.BytesIO(image)).convert('L').resize((28, 28))
-	image = np.array(image).reshape(28,28,1).astype('float32')/255.0
-	prediction = model.predict(np.expand_dims(image, axis=0))[0]
-	ind = (-prediction).argsort()[:5]
-	predictions = [prediction[x] for x in ind]
-	print(predictions)
-	result = [ classes[x] for x in ind]
-	print(result)
-	try:
-		return result.index(category)+1
-	except ValueError:
-		return 0
-
 
 
 def predict(model, classes, image, category):

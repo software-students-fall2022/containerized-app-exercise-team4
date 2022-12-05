@@ -35,7 +35,7 @@ except Exception as e:
     print('Database connection error:', e) # debug'
 
 #cluster = pymongo.MongoClient(
-    "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+  #  "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
 #db = cluster["project4"]
 # try:
@@ -71,24 +71,24 @@ def check():
     data = request.get_json()
     objscore, res, category, score2 = predict(
         model, classes, data['image'], data['category'])
-    x = db.users.find_one({'username': user_name})
-    print(category)
-    try:
-        if (x[category] < objscore):
-            db.users.update_one(
-                {'username': user_name},
-                {'$set': {category: objscore}}
+    if(not data['test']):
+        x = db.users.find_one({'username': user_name})
+        print(category)
+        try:
+            if (x[category] < objscore):
+                db.users.update_one(
+                    {'username': user_name},
+                    {'$set': {category: objscore}}
+                )
+            print(score2, objscore)
+            if (x['score'] < score2):
+                db.users.update_one(
+                    {'username': user_name},
+                    {'$set': {'score': score2}}
             )
-        print(score2, objscore)
-        if (x['score'] < score2):
-            db.users.update_one(
-                {'username': user_name},
-                {'$set': {'score': score2}}
-        )
-    except Exception as e:
-        print("error:", e)
-
-    print(db.users.find_one({'username': user_name}))
+        except Exception as e:
+            print("error:", e)
+        print(db.users.find_one({'username': user_name}))
     return jsonify(
         {
             'result': res,
