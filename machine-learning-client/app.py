@@ -34,8 +34,9 @@ except Exception as e:
     print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
     print('Database connection error:', e) # debug'
 
-#cluster = pymongo.MongoClient(
-  #  "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+# cluster = pymongo.MongoClient(
+#     "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+
 
 #db = cluster["project4"]
 # try:
