@@ -52,6 +52,7 @@ function submit(mode) {
                     body: JSON.stringify({
                         image: canvas.toDataURL().replace(/^data:image\/[a-z]+;base64,/, ""),
                         category: document.getElementById('category').innerHTML,
+                        test: false
                     })
                 }).then(res => res.json())
                 .then(response => {
