@@ -25,15 +25,12 @@ def predict(model, classes, image, category):
     image = base64.b64decode(image)
     image = Image.open(io.BytesIO(image)).convert('L').resize((28, 28))
     image = np.array(image).reshape(28, 28, 1).astype('float32')/255.0
-    # print(image)
     prediction = model.predict(np.expand_dims(image, axis=0))[0]
-    print(max(prediction))
-    if max(prediction) < 0.5:
-        return 0
+    print(prediction[classes.index(category)])
+    if (prediction[classes.index(category)]) < 0.5:
+        return ["Failed", 0, 0, category, scoretotal]
     ind = (-prediction).argsort()[:5]
     result = [classes[x] for x in ind]
-    print(result)
-    print(result.index(category)+1)
     if (result.index(category)+1 == 1):
         score = 50
     elif (result.index(category)+1 == 2):
@@ -46,10 +43,9 @@ def predict(model, classes, image, category):
         score = 10
     else:
         score = 0
-
     scoretotal += score
-    print("scoretotal", scoretotal)
+    wordsList = ["Perfect", "Excellent", "Very Good", "Good", "Average"]
     try:
-        return score, result.index(category)+1, category, scoretotal
+        return wordsList[result.index(category)], score, result.index(category)+1, category, scoretotal
     except ValueError:
-        return 0
+        return ["Failed", 0, 0, category, scoretotal]
