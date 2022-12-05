@@ -12,8 +12,29 @@
 
 **Database** - Stores each user's username and password, as well as their scores on each of the possible objects that the user is prompted to draw.
 
+## Docker Setup
+### WEBAPP + MONGODB Database Setup within Docker (using docker-compose)
+
+1. Docker Desktop: 
+Make sure Docker Desktop is installed, if not,
+
+    check [here](https://docs.docker.com/desktop/install/windows-install/) for windows
+
+    check
+    [here](https://docs.docker.com/desktop/install/mac-install/) for mac
+
+2. Once the docker desktop is installed, make sure you go to the top right corner and click on bug sign to navigate to **RESET TO FACTORY DEFAULTS**. This will reset the docker and prompt the docker to restart. Please make sure you do this step before running the files from github repository because the docker does not create right images sometimes.
+
+3. Go to the folder (outside web-app folder) and run the following command
+    ```
+    docker-compose up
+    ```
+
+4. This will install all the required dependencies and the web app starts running at port **127.0.0.1:3000**. Make sure you go to **127.0.0.1:3000** port instead of 5000 because the docker outputs the web-app at **127.0.0.1:3000** port. 
 
 ## Machine Learning Client Setup
+
+**Note:** One of the modules we used for the machine learning client is not supported by Apple Silicon, so you won't be able to run it on Macs with M1 and M2 chips unless you install a virtual machine on your device.
 
 ### Set Up Virtual Environment
 
@@ -51,7 +72,7 @@
 
 The player draws an image on canvas and gets results as **PERFECT, EXCELLENT, VERY GOOD, GOOD, AVERAGE and FAILED** which are mapped to **50, 40, 30, 20, 10, 0** respectively.  
 
-## Web App Setup
+## Web App Setup (If you want to run webapp without using docker-compose)
 
 ### Activate Virtual Environment
 
@@ -101,30 +122,6 @@ The player draws an image on canvas and gets results as **PERFECT, EXCELLENT, VE
     ```
 
     This will output an address at which the app is running locally, e.g. https://127.0.0.1:5000. Visit that address in a web browser.
-
-
-## Docker Setup
-### WEBAPP + MONGODB Database Setup within Docker (using docker-compose)
-
-1. Docker Desktop: 
-Make sure Docker Desktop is installed, if not,
-
-    check [here](https://docs.docker.com/desktop/install/windows-install/) for windows
-
-    check
-    [here](https://docs.docker.com/desktop/install/mac-install/) for mac
-
-2. Once the docker desktop is installed, make sure you go to the top right corner and click on bug sign to navigate to **RESET TO FACTORY DEFAULTS**. This will reset the docker and prompt the docker to restart. Please make sure you do this step before running the files from github repository because the docker does not create right images sometimes.
-
-3. Go to the folder (outside web-app folder) and run the following command
-    ```
-    docker-compose up
-    ```
-
-4. This will install all the required dependencies and the web app starts running at port **127.0.0.1:3000**. Make sure you go to **127.0.0.1:3000** port instead of 5000 because the docker outputs the web-app at **127.0.0.1:3000** port.
-
-
-### MachineLearningClinet + MONGODB Database Setup within Docker (using docker-compose)
 
 
 ## Run Tests
