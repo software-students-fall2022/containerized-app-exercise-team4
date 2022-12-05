@@ -9,7 +9,11 @@
 	</head>
 	<body>
 		<div class="container-fluid text-center h-100">
-			<h1 class="p-3">Drawing Game</h1>
+		  <h1 class="p-3">Drawing Game</h1>
+			<div style="display: flex; flex-direction:row; justify-content:center; align-items:center">
+				<h3>score:</h3>
+				<h3 id="score">0</h3>
+			</div>
 			<div class="my-4">
 				<h2 class="my-3">You need to draw: <span class="text-primary" id="category"></span></h2>
 				<canvas id="canvas" width="400" height="400"></canvas>
@@ -26,6 +30,13 @@
 					<h2 class="text-danger warningMessage">Please utilize the whole canvas for accurate predictions!</h2>
 				</div>
 			</div>
+			<button class="button_home">
+                <a href="login" id="changetowhite">
+                    <p class="logout">
+                        <u> Logout </u>
+                    </p>
+                </a>
+            </button>
 		</div>
 		<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 	</body>

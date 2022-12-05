@@ -5,11 +5,12 @@
 
 ## Project Description
 
-Machine Learning Client - A game where a user is prompted to draw an object on a canvas. When the user submits their drawing, the model predicts what they drew and the user gets points based on the model's confidence output.
+**Machine Learning Client** - A game where a user is prompted to draw an object on a canvas. When the user submits their drawing, the model predicts what they drew and the user gets points based on the model's confidence output.
 
-Web App - A dashboard that displays analytics, including leaderboard for highest scores, most active users, and the average score for each object.
+**Web App** - A dashboard that displays analytics, including leaderboard for highest scores, most active users, and the average score for each object.
 
-Database - Stores each user's username and password, as well as their scores on each of the possible objects that the user is prompted to draw.
+**Database** - Stores each user's username and password, as well as their scores on each of the possible objects that the user is prompted to draw.
+
 
 ## Machine Learning Client Setup
 
@@ -54,29 +55,89 @@ Database - Stores each user's username and password, as well as their scores on 
     ```
     cd web-app
     ```
+
 2. Create virtual environment
     ```
     python -m venv .venv
     ```
+
+
 3. Activate virtual environment
     **If you ran the Machine Learning client in a virtual environment called .venv, pick a different name for the virtual environment when running the web app. If picking a different name, make sure to replace .venv in all the following commands with the new name of your virtual environment.**
-    windows: `.venv\Scripts\activate.bat`
-    mac: `source .venv/bin/activate`
-4. Install packages: `pip install -r requirements.txt`.
-5. define two environment variables from the command line:
-   on Mac, use the commands: `export FLASK_APP=app.py` and `export FLASK_ENV=development`.
-   on Windows, use `set FLASK_APP=app.py` and `set FLASK_ENV=development`.
-6. start flask with `flask run` - this will output an address at which the app is running locally, e.g. https://127.0.0.1:5000. Visit that address in a web browser.
+
+    #### For Windows: 
+    ```
+    .venv\Scripts\activate.bat
+    ```
+
+    #### For mac: 
+    ```
+    source .venv/bin/activate
+    ```
+
+4. Install the packages: 
+    ```
+    pip install -r requirements.txt
+    ```
+
+5. Define two environment variables from the command line:
+    #### On Windows, use 
+    ```
+    set FLASK_APP=app.py and set FLASK_ENV=development
+    ```
+        
+    #### On Mac, use  
+    ```
+    export FLASK_APP=app.py and export FLASK_ENV=development
+    ```
+   
+6. Start flask with 
+    ```
+    flask run
+    ```
+
+    This will output an address at which the app is running locally, e.g. https://127.0.0.1:5000. Visit that address in a web browser.
+
 
 ## Docker Setup
+### Local mongodb database set up within Docker
 
-To be written
+1. Docker Desktop: 
+Make sure Docker Desktop is installed, if not,
+
+    check [here](https://docs.docker.com/desktop/install/windows-install/) for windows
+
+    check
+    [here](https://docs.docker.com/desktop/install/mac-install/) for mac
+
+2. 
+    ### TBD
 
 
 ## Run Tests
 
-To run machine-learning-client tests, change directory to machine-learning-client `cd machine-learning-client` and run `python -m pytest`.
-To run web-app tests, change directory to web-app `cd web-app` and run `python -m pytest`.
+#### Run Machine Learning Client Tests
+If you want to run machine learning client tests, do the following:
+1. change directory to machine-learning-client
+    ```
+    cd machine-learning-client 
+    ``` 
+2. Run 
+    ```
+    python -m pytest
+    ```
+
+#### Run Web-App Tests
+If you want to run web app tests, do the following:
+1. change directory to web-app
+    ```
+    cd web-app 
+    ``` 
+2. Run 
+    ```
+    python -m pytest
+    ```
+
 
 ## Team Members
 
