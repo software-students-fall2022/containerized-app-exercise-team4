@@ -6,8 +6,6 @@
     ```
     cd machine-learning-client
     ```
-    You should be inside machine-learning-client folder to run following:
-
 2. Create python virtual environment
     ```
     python -m venv .venv
@@ -19,6 +17,7 @@
 4. Download dependencies
     ```
     pip install -r requirements.txt
+    ```
 
 ### Run Machine Learning Client
 
@@ -26,8 +25,6 @@
     ```
     cd machine-learning-client
     ```
-    You should be inside machine-learning-client folder to run following:
-
 2. Activate virtual environment
     ```
     source .venv/Scripts/activate
@@ -37,14 +34,16 @@
     flask run
     ```
 
-### Run Machine Learning Client Tests
+## Run Tests
+
+#### Run Machine Learning Client Tests
 If you want to run machine learning client tests, do the following:
 1. change directory to machine-learning-client
     ```
     cd machine-learning-client 
-    ```
-    You should be inside machine-learning-client folder to run the following: 
+    ``` 
 2. Run 
     ```
     python -m pytest
-    ```
+
+The player draws an image on canvas and gets results as **PERFECT, EXCELLENT, VERY GOOD, GOOD, AVERAGE and FAILED** which are mapped to **50, 40, 30, 20, 10, 0** respectively.  

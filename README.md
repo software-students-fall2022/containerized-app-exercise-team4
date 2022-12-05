@@ -32,6 +32,7 @@
 4. Download dependencies
     ```
     pip install -r requirements.txt
+    ```
 
 ### Run Machine Learning Client
 
@@ -47,6 +48,8 @@
     ```
     flask run
     ```
+
+The player draws an image on canvas and gets results as **PERFECT, EXCELLENT, VERY GOOD, GOOD, AVERAGE and FAILED** which are mapped to **50, 40, 30, 20, 10, 0** respectively.  
 
 ## Web App Setup
 
@@ -101,7 +104,7 @@
 
 
 ## Docker Setup
-### Local mongodb database set up within Docker
+### WEBAPP + MONGODB Database Setup within Docker (using docker-compose)
 
 1. Docker Desktop: 
 Make sure Docker Desktop is installed, if not,
@@ -111,8 +114,17 @@ Make sure Docker Desktop is installed, if not,
     check
     [here](https://docs.docker.com/desktop/install/mac-install/) for mac
 
-2. 
-    ### TBD
+2. Once the docker desktop is installed, make sure you go to the top right corner and click on bug sign to navigate to **RESET TO FACTORY DEFAULTS**. This will reset the docker and prompt the docker to restart. Please make sure you do this step before running the files from github repository because the docker does not create right images sometimes.
+
+3. Go to the folder (outside web-app folder) and run the following command
+    ```
+    docker-compose up
+    ```
+
+4. This will install all the required dependencies and the web app starts running at port **127.0.0.1:3000**. Make sure you go to **127.0.0.1:3000** port instead of 5000 because the docker outputs the web-app at **127.0.0.1:3000** port.
+
+
+### MachineLearningClinet + MONGODB Database Setup within Docker (using docker-compose)
 
 
 ## Run Tests
@@ -153,5 +165,3 @@ If you want to run web app tests, do the following:
 [Fatema Nassar](https://github.com/maazahmedd)
 
 [Elyazya Al Kobaisi](https://github.com/elyazya)
-
-Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
