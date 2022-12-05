@@ -11,4 +11,6 @@ def countsScores(scoresList):
             perfect+=1
         elif score=="Failed":
             failed+=1
+        elif score=="Good":
+            good+=1
     return failed,average,good,veryGood,excellent,perfect
