@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block container %}
+<div>
+    <h1 class="text-center pt-4">Welcome to the Game Dashboard</h1>
+    <ul class="menu p-4">
+        <li class="p-3"><a href="{{ url_for('leaderboard')}}">Leaderboard</a></li>
+        <li class="p-3"><a href="{{ url_for('active')}}">Most active users</a></li>
+        <li class="p-3"><a href="{{ url_for('comparison')}}">Object comparisons</a></li>
+        <li class="p-3"><a href="{{ url_for('statistics')}}">Individual object statistics</a></li>
+    </ul>
+</div>
+{% endblock %}
