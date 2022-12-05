@@ -19,20 +19,20 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
     app.debug = True  # debug mnode
 
 # connect to the database
-cluster = pymongo.MongoClient(
-    "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+# cluster = pymongo.MongoClient(
+#     "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
-db = cluster["project4"]
-# try:
-#     # verify the connection works by pinging the database
-#     cxn.admin.command('ping') # The ping command is cheap and does not require auth.
-#     db = cxn[config['MONGO_DBNAME']] # store a reference to the database
-#     print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
-# except Exception as e:
-#     # the ping command failed, so the connection is not available.
-#     # render_template('error.html', error=e) # render the edit template
-#     print(' *', "Failed to connect to MongoDB at", config['MONGO_URI'])
-#     print('Database connection error:', e) # debug
+# db = cluster["project4"]
+try:
+    # verify the connection works by pinging the database
+    cxn.admin.command('ping') # The ping command is cheap and does not require auth.
+    db = cxn[config['MONGO_DBNAME']] # store a reference to the database
+    print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+except Exception as e:
+    # the ping command failed, so the connection is not available.
+    # render_template('error.html', error=e) # render the edit template
+    print(' *', "Failed to connect to MongoDB at", config['MONGO_URI'])
+    print('Database connection error:', e) # debug
 
 
 @app.route('/')
