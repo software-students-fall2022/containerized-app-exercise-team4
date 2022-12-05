@@ -83,7 +83,12 @@ function submit(mode) {
 function puzzle() {
     clearArea()
     fetch('/puzzle').then(res => res.text())
-        .then(response => document.getElementById('category').innerHTML = response)
+        .then(response => {
+            if(response == "baseball_bat"){
+                response = "baseball bat"
+            }
+            document.getElementById('category').innerHTML = response
+        })
 }
 
 puzzle()
