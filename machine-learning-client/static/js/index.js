@@ -21,24 +21,23 @@ document.getElementById('canvas').addEventListener('mouseleave', function(e) {
 })
 
 function Draw(x, y, isDown) {
-    if (isDown) {
-        ctx.beginPath()
-        ctx.strokeStyle = 'white'
-        ctx.lineWidth = 5
-        ctx.lineJoin = "round"
-        ctx.moveTo(lastX, lastY)
-        ctx.lineTo(x, y)
-        ctx.closePath()
-        ctx.stroke()
-    }
-    lastX = x
-    lastY = y
+	if (isDown) {
+		ctx.beginPath()
+		ctx.strokeStyle = 'white'
+		ctx.lineWidth = 20
+		ctx.lineJoin = "round"
+		ctx.moveTo(lastX, lastY)
+		ctx.lineTo(x, y)
+		ctx.closePath()
+		ctx.stroke()
+	}
+	lastX = x
+	lastY = y
 }
 
 function clearArea() {
-    // Use the identity matrix while clearing the canvas
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+	ctx.setTransform(1, 0, 0, 1, 0, 0)
+	ctx.clearRect(1, 0, ctx.canvas.width, ctx.canvas.height)
 }
 
 function submit(mode) {

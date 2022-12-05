@@ -9,6 +9,7 @@ RUN pip3 install -r requirements.txt
 
 # the ADD command is how you add files from your local machine into a Docker image
 # Copy the current directory contents into the container at /app
+
 ADD . /web-app
 
 # expose the port that the Flask app is running on... by default 5000
@@ -16,4 +17,3 @@ EXPOSE 5000
 
 # Run app.py when the container launches
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-

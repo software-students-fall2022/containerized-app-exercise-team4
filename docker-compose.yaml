@@ -8,20 +8,6 @@ services:
     depends_on:
       - db
     command: npm start
-
-  machine-learning-client:
-    build: ./machine-learning-client
-    ports:
-      - ""
-    environment:
-      -
-    dns:
-      - 
-    depends_on:
-      - db
-    volumes: 
-      - ./
-    command: npm start
   
   db:
     image: mongo:latest
