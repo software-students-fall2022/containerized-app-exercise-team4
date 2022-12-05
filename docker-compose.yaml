@@ -1,16 +1,18 @@
-version: "3.8"
 services:
-  
-  web-app:
+  mongodb:
+    image: mongo:4.0-xenial
+    ports: 
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    
+  webapp:
     build: ./web-app
     ports:
-      - "5000:5000"
+      - "3000:5000"
+    environment:
+      DB_HOST: mongodb://db/foobar
     depends_on:
-      - db
-    command: npm start
-  
-  db:
-    image: mongo:latest
-    ports: 
-      - "27017:27017"
-    
+      - mongodb
+    volumes:
+      - ./uploads:/uploads
