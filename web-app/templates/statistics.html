@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block container %}
+<div class="text-center menu p-2">
+    <h1 class="p-2 statisticsHeader">Select an Object to View its Statistics</h1>
+    <div><a class="btn btn-warning p-2" href="{{ url_for('baseball')}}">Baseball Bat</a></div><br>
+    <div><a class="btn btn-success p-2" href="{{ url_for('eyeglasses')}}">Eyeglasses</a><div><br>
+    <div><a class="btn btn-danger p-2" href="{{ url_for('grapes')}}">Grapes</a></div><br>
+    <div><a class="btn btn-info p-2" href="{{ url_for('anvil')}}">Anvil</a></div><br>
+    <div><a class="btn btn-primary p-2" href="{{ url_for('laptop')}}">Laptop</a></div><br>
+    <div><a class="btn btn-secondary p-2" href="{{ url_for('dumbbell')}}">Dumbbell</a></div><br>
+    <div><a class="btn btn-danger p-2" href="{{ url_for('sun')}}">Sun</a></div><br>
+    <div><a class="btn btn-dark p-2" href="{{ url_for('book')}}">Book</a></div><br>
+    <div><a class="btn btn-warning p-2" href="{{ url_for('drums')}}">Drums</a></div><br>
+    <div><a class="btn btn-success p-2" href="{{ url_for('ladder')}}">Ladder</a></div>
+</div>
+{% endblock %}

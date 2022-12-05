@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block container %}
+<h1 class="titleHeader">User Drawings</h1>
+<div class="imagesDiv">
+{% for image in images %}
+<div class="imageInfoDiv">
+    <h3 class="category">{{image['category']}}</h3>
+    <div class="imageDiv">
+        <img src="{{ image['uri'] }}" height="200" width=200>
+    </div>
+    <h4 class="modelRating">{{image['word']}}</h4>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
