@@ -23,8 +23,6 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
     # turn on debugging, if in development
     app.debug = True # debug mnode
 
-# connect to the database
-# cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
 cxn = pymongo.MongoClient("mongodb+srv://dixit:dixit123@cluster0.7vestnp.mongodb.net/?retryWrites=true&w=majority", serverSelectionTimeoutMS=5000)
 try:
     # verify the connection works by pinging the database
@@ -34,8 +32,9 @@ try:
     print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
 except Exception as e:
     # the ping command failed, so the connection is not available.
-    print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
+    print('', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
     print('Database connection error:', e) # debug'
+
 
 # set up the routes
 
@@ -386,9 +385,13 @@ def ladder():
     plt.clf()
     return render_template('display.html',url='./static/images/ladder.png',name="Ladder")
 
+@app.route('/drawing')
+def getDrawings():
+    return render_template('drawings.html', images=db.images.find({}))
+
+
 if __name__ == "__main__":
     PORT = os.getenv('PORT', 5000) # use the PORT environment variable, or default to 5000
-
     #import logging
     #logging.basicConfig(filename='/home/ak8257/error.log',level=logging.DEBUG)
     app.run(port=PORT)  
