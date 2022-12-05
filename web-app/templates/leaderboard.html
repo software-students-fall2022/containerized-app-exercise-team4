@@ -6,10 +6,12 @@
         <th>Username</th>
         <th>Score</th>
         {% for doc in docs %}
+
         <tr>
             <td>{{doc.username}}</td>
             <td>{{doc.score}}</td>
         </tr>
+
         {% endfor %}
     </table>
 </div>

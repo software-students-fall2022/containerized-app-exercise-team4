@@ -1,4 +1,6 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9334554&assignment_repo_type=AssignmentRepo)
+![ML Tests](https://github.com/software-students-fall2022/containerized-app-exercise-team4/actions/workflows/ml-tests.yaml/badge.svg)
+![Web App Tests](https://github.com/software-students-fall2022/containerized-app-exercise-team4/actions/workflows/web-app-tests.yaml/badge.svg)
 # Containerized App Exercise
 
 ## Project Description
@@ -8,6 +10,7 @@
 **Web App** - A dashboard that displays analytics, including leaderboard for highest scores, most active users, and the average score for each object.
 
 **Database** - Stores each user's username and password, as well as their scores on each of the possible objects that the user is prompted to draw.
+
 
 ## Machine Learning Client Setup
 
@@ -57,6 +60,7 @@
     ```
     python -m venv .venv
     ```
+
 
 3. Activate virtual environment
     **If you ran the Machine Learning client in a virtual environment called .venv, pick a different name for the virtual environment when running the web app. If picking a different name, make sure to replace .venv in all the following commands with the new name of your virtual environment.**

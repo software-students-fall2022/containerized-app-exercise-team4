@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 from tensorflow.keras.models import load_model
-from bson.objectid import ObjectId
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 from quickdraw import *
 import datetime
 import pymongo
@@ -9,30 +8,47 @@ import sys
 import os
 
 model, classes = initialize()
+print(classes)
 
 app = Flask(__name__)
-config = dotenv_values(".env")
 
-# turn on debugging if in development mode
+# load credentials and configuration options from .env file
+# if you do not yet have a file named .env, make one based on the template in env.example
+load_dotenv()  # take environment variables from .env.
+
+# turn on debugging if in development modeflas
 if os.getenv('FLASK_ENV', 'development') == 'development':
     # turn on debugging, if in development
     app.debug = True  # debug mnode
 
 # connect to the database
-# cluster = pymongo.MongoClient(
-#     "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
 
-# db = cluster["project4"]
+cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
 try:
     # verify the connection works by pinging the database
     cxn.admin.command('ping') # The ping command is cheap and does not require auth.
-    db = cxn[config['MONGO_DBNAME']] # store a reference to the database
+    db = cxn[os.getenv('MONGO_DBNAME')] # store a reference to the database
     print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
 except Exception as e:
     # the ping command failed, so the connection is not available.
-    # render_template('error.html', error=e) # render the edit template
-    print(' *', "Failed to connect to MongoDB at", config['MONGO_URI'])
-    print('Database connection error:', e) # debug
+    print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
+    print('Database connection error:', e) # debug'
+
+#cluster = pymongo.MongoClient(
+    "mongodb+srv://project4:<pass>@cluster.t4wmivq.mongodb.net/?retryWrites=true&w=majority")
+
+#db = cluster["project4"]
+# try:
+#     # verify the connection works by pinging the database
+#     cxn.admin.command('ping') # The ping command is cheap and does not require auth.
+#     db = cxn[config['MONGO_DBNAME']] # store a reference to the database
+#     print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+# except Exception as e:
+#     # the ping command failed, so the connection is not available.
+#     # render_template('error.html', error=e) # render the edit template
+#     print(' *', "Failed to connect to MongoDB at", config['MONGO_URI'])
+#     print('Database connection error:', e) # debug
+
 
 
 @app.route('/')

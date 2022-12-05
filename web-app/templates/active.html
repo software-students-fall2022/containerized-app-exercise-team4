@@ -6,10 +6,12 @@
         <th>Username</th>
         <th>Games Played</th>
         {% for doc in docs %}
+
         <tr>
             <td>{{doc.username}}</td>
             <td>{{doc.numLogins}}</td>
         </tr>
+
         {% endfor %}
     </table>
 </div>
