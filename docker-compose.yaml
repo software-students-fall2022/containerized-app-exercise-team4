@@ -16,7 +16,7 @@ services:
     environment:
       -
     dns:
-      - "5001:5001" #check
+      - 
     depends_on:
       - db
     volumes: 
