@@ -25,7 +25,7 @@ Make sure Docker Desktop is installed, if not,
 
 2. Once the docker desktop is installed, make sure you go to the top right corner and click on bug sign to navigate to **RESET TO FACTORY DEFAULTS**. This will reset the docker and prompt the docker to restart. Please make sure you do this step before running the files from github repository because the docker does not create right images sometimes.
 
-3. Go to the folder (outside web-app folder) and run the following command
+3. Go to the root folder (containerized-app-exercise-team4) and run the following command
     ```
     docker-compose up
     ```
