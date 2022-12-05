@@ -159,6 +159,6 @@ If you want to run web app tests, do the following:
 
 [Sanjaya Bhatta](https://github.com/itSanjaya)
 
-[Fatema Nassar](https://github.com/maazahmedd)
+[Fatema Nassar](https://github.com/fnassar)
 
 [Elyazya Al Kobaisi](https://github.com/elyazya)
